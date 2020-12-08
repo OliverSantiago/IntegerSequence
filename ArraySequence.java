@@ -13,6 +13,16 @@ public class ArraySequence implements IntegerSequence{
     }
   }
 
+  public ArraySequence(IntegerSequence otherseq){
+    currentIndex = 0;
+    data = new int[otherseq.length()];
+    int index = 0;
+    while (otherseq.hasNext()){
+      data[index]=otherseq.next();
+      index++;
+    }
+  }
+
   public void reset(){
     currentIndex=0;
   }
@@ -25,9 +35,13 @@ public class ArraySequence implements IntegerSequence{
     return (currentIndex<this.length());
   }
 
-  public int next(){
-    int temp = data[currentIndex];
-    currentIndex++;
-    return temp;
+  public int next() throws NoSuchElementException{
+    try{
+      int temp = data[currentIndex];
+      currentIndex++;
+      return temp;
+    }catch (IndexOutOfBoundsException e){
+      throw new NoSuchElementException();
+    }
   }
 }
