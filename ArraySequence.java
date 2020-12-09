@@ -21,6 +21,7 @@ public class ArraySequence implements IntegerSequence{
       data[index]=otherseq.next();
       index++;
     }
+    otherseq.reset();
   }
 
   public void reset(){
